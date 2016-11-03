@@ -1,9 +1,18 @@
 <h1 class="text-center" > WELCOME TO RAILS, BIRDS </h1>
-<div class="container"></div>
+<div class="container">
 <section class="chirps">
-  <article class="chirp">
-    <ul>
-      <li></li>
-    </ul>
-  </article>
+  <% @chirps.each do |ch| %>
+    <article class="chirp">
+      <ul>
+        <li><%= ch.user.first_name %></li>
+      </ul>
+      <%= ch.body %>
+    </article>
+  <% end %>
 </section>
+</div>
+
+
+1000.times do
+  User.create(email: "#{Faker::StarWars.character.tr(" ","")}@wars.com", first_name: "#{Faker::StarWars.character.split.first}").chirps.create(body: "#{Faker::StarWars.quote}")
+end
