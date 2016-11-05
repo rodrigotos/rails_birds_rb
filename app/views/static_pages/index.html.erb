@@ -4,15 +4,10 @@
   <% @chirps.each do |ch| %>
     <article class="chirp">
       <ul>
-        <li><%= ch.user.first_name %></li>
+        <li><%= ch.user.first_name if ch.user %></li>
       </ul>
       <%= ch.body %>
     </article>
-  <% end %>
+  <% end if @chirps.any?%>
 </section>
 </div>
-
-
-1000.times do
-  User.create(email: "#{Faker::StarWars.character.tr(" ","")}@wars.com", first_name: "#{Faker::StarWars.character.split.first}").chirps.create(body: "#{Faker::StarWars.quote}")
-end
